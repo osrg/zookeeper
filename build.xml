@@ -30,8 +30,8 @@
     <property name="revision.properties" value="revision.properties" />
     <property file="${basedir}/src/java/${revision.properties}" />
     
-    <property name="javac.target" value="1.5" />
-    <property name="javac.source" value="1.5" />
+    <property name="javac.target" value="1.6" />
+    <property name="javac.source" value="1.6" />
 
     <property name="src.dir" value="${basedir}/src" />
     <property name="java.src.dir" value="${src.dir}/java/main" />
@@ -363,6 +363,18 @@
         </javac>
     </target>
 
+    <target name="compile-ajc" depends="ivy-retrieve,clover,build-generated">
+        <taskdef resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties">
+          <classpath refid="java.classpath"/>
+          <classpath refid="package.classpath"/>
+        </taskdef>
+	
+        <ajc srcdir="${java.src.dir}" destdir="${build.classes}" includeantruntime="false"
+               target="${javac.target}" source="${javac.source}" debug="on">
+            <classpath refid="java.classpath"/>
+        </ajc>
+    </target>
+
     <target name="compile-test" depends="ivy-retrieve-test,compile">
       <mkdir dir="${test.java.classes}"/>
       <javac srcdir="${test.src.dir}" destdir="${test.java.classes}" includeantruntime="false"
@@ -532,6 +544,49 @@
         </jar>
     </target>
     
+    <!-- ====================================================== -->
+    <!-- Make zookeeper.jar ajc                                 -->
+    <!-- ====================================================== -->
+    <target name="jar-ajc" depends="compile-ajc">
+        <java classname="org.apache.zookeeper.Version" fork="true"
+              outputproperty="revision" failonerror="true">
+            <arg value="--revision" />
+            <classpath>
+                <pathelement path="${build.classes}" />
+                <pathelement path="${clover.jar}" />
+            </classpath>
+        </java>
+        <exec executable="hostname" outputproperty="host.name"/>
+        <jar jarfile="${build.dir}/${final.name}-earthquake.jar">
+            <fileset file="LICENSE.txt" />
+            <fileset dir="${build.classes}" excludes="**/.generated"/>
+            <fileset dir="${java.src.dir}"/>
+            <fileset dir="${src_generated.dir}" excludes="**/.generated"/>
+            <manifest>
+                <attribute name="Main-Class" value="org.apache.zookeeper.server.quorum.QuorumPeer" />
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Built-At" value="${build.time}"/>
+                <attribute name="Built-On" value="${host.name}" />
+                <attribute name="Implementation-Title" value="org.apache.zookeeper"/>
+                <attribute name="Implementation-Version" value="${revision}"/> 
+                <attribute name="Implementation-Vendor" value="The Apache Software Foundation"/>
+            	
+            	<!-- The following are OSGi manifest headers -->
+            	<!-- currently hardcoded, when things get more complicated we could use BND 
+            	http://www.aqute.biz/Code/Bnd to generate them -->
+                <attribute name="Bundle-Vendor" value="The Apache Software Foundation"/>
+                <attribute name="Bundle-Name" value="ZooKeeper Bundle"/>
+                <attribute name="Bundle-SymbolicName" value="org.apache.hadoop.zookeeper"/>
+                <attribute name="Bundle-ManifestVersion" value="2"/>
+                <attribute name="Bundle-Version" value="${version}"/>
+                <attribute name="Bundle-License" value="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+                <attribute name="Bundle-DocURL" value="http://hadoop.apache.org/zookeeper"/>
+                <attribute name="Import-Package" value='javax.management;resolution:=optional,javax.security.auth.callback,javax.security.auth.login,javax.security.sasl,org.slf4j;version="[1.6,2)",org.jboss.netty.buffer;resolution:=optional;version="[3.2,4)",org.jboss.netty.channel;resolution:=optional;version="[3.2,4)",org.jboss.netty.channel.group;resolution:=optional;version="[3.2,4)",org.jboss.netty.channel.socket.nio;resolution:=optional;version="[3.2,4)",org.osgi.framework;resolution:=optional;version="[1.5,2)",org.osgi.util.tracker;resolution:=optional;version="[1.4,2)"'/>
+                <attribute name="Export-Package" value='org.apache.zookeeper;version="${version}",org.apache.zookeeper.client;version="${version}",org.apache.zookeeper.data;version="${version}",org.apache.zookeeper.version;version="${version}",org.apache.zookeeper.server;version="${version}",org.apache.zookeeper.server.auth;version="${version}",org.apache.zookeeper.server.persistence;version="${version}",org.apache.zookeeper.server.quorum;version="${version}",org.apache.zookeeper.common;version="${version}"'/>
+            </manifest>
+        </jar>
+    </target>
+
     <!-- ====================================================== -->
     <!-- Make zookeeper-bin.jar                                 -->
     <!-- ====================================================== -->
