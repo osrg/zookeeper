@@ -23,6 +23,7 @@ do
     wait
     if [ $i -eq 19 ]
     then
+        sleep 15
         bash ${ZOOBINDIR}/zkCleanup.sh -n 3 &
         sleep 5
     fi
