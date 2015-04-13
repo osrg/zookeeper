@@ -7,7 +7,8 @@ ZOOBINDIR=`cd ${SCRIPTBIN}/../../bin; pwd`
 "$ZOOBINDIR"/zkEnv.sh
 
 echo "znode deleteall: /invalidsnaps"
-$ZOOBINDIR/zkCli.sh deleteall /invalidsnaps | grep "Node does not exist"
+$ZOOBINDIR/zkCli.sh deleteall /invalidsnaps | grep "Node does not exist" ||
+$ZOOBINDIR/zkCli.sh rmr /invalidsnaps | grep "Node does not exist"
 
-bash ${ZOOBINDIR}/zkCleanup.sh -n 3
+#bash ${ZOOBINDIR}/zkCleanup.sh -n 3
 

@@ -9,7 +9,7 @@
         { "states": [
           { "processId": "zookeeper-1797", "event": {"eventType": "funcCall", "eventParam": {"name": "wait-for-1797"} } }
         ],
-          "action": { "type": "execCommand", "param" : {"command": "sleep 15"} }
+          "action": { "type": "execCommand", "param" : {"command": "sleep 20"} }
         }
     ]
 }

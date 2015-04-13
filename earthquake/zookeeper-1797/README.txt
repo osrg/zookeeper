@@ -50,7 +50,7 @@ Procedure:
 # cp /root/git/osrg_zookeeper/conf/zoo_sample.cfg /root/git/osrg_zookeeper/conf/zoo.cfg
 
 - change rotation interval(Set to rotate at 20 transaction)
-# echo snapCount=30 >> /root/git/osrg_zookeeper/conf/zoo.cfg
+# echo snapCount=20 >> /root/git/osrg_zookeeper/conf/zoo.cfg
 
 - build zookeeper
 # cd /root/git/osrg_zookeeper/

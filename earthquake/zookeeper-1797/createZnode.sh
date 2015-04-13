@@ -24,6 +24,7 @@ do
     if [ $i -eq 19 ]
     then
         bash ${ZOOBINDIR}/zkCleanup.sh -n 3 &
+        sleep 5
     fi
     i=`expr $i + 1`
 done
