@@ -4,22 +4,22 @@ reproduce by Earthquake
 
 Summary:
 
-- Inject the Sleep processing to purging script(Zookeeper supplied zkCleanup.sh) by Earthquake.
-- Creation and deletion of Znode separately run the script (createZnode.sh and deleteZnode.sh).
-- State confirmation of Znode is separately run the script (validateZnode.sh).
+1. Inject pause during purge to data while create znode by createZnode.sh
+2. Check up status of Znode by validateZnode.sh
+3. Clean up by deleteZnode.sh
 
 
 Prerequisite:
 
-- AspectJ is installed
+- AspectJ require
 # ajc -version
 AspectJ Compiler 1.8.4 (1.8.4 - Built: Thursday Nov 6, 2014 at 20:19:21 GMT) - Eclipse Compiler BETA_JAVA8_2b07958, 3.11
 
-- Go is installed
+- Go require
 # go version
 go version go1.4 linux/amd64
 
-- Protoc is installed
+- Protoc require
 # protoc --version
 libprotoc 2.6.1
 
@@ -82,4 +82,7 @@ Procedure:
 
 - if some missing of znode:
 Unexpected exception when visiting znode!: error_count=XXX
+
+- clean up znode:
+# sh /root/zookeeper-release-3.4.5/earthquake/zookeeper-1797/deleteZnode.sh
 
