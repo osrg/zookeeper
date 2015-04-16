@@ -2,5 +2,5 @@
 
 for i in `seq 1 3`;
 do
-    bin/zkServer.sh --config quorumconf/$i start
+    ZOO_LOG_DIR=logs/$i/ bin/zkServer.sh --config quorumconf/$i start
 done
