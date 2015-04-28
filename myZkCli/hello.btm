@@ -1,0 +1,21 @@
+RULE queuePacket
+CLASS ClientCnxn
+METHOD queuePacket
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+System.out.println("BTM: inspecting queuePacket()");
+eventFuncCall("queuePacket");
+ENDRULE
+
+RULE exit
+CLASS MyZkCli
+HELPER EQHelper
+METHOD main
+AT EXIT
+IF true
+DO
+System.out.println("BTM: exit");
+stopInspection();
+ENDRULE
