@@ -9,6 +9,16 @@ System.out.println("BTM: inspecting queuePacket()");
 eventFuncCall("queuePacket");
 ENDRULE
 
+RULE invoke initiation, call static constructor of EQHelper
+CLASS MyZkCli
+HELPER EQHelper
+METHOD main
+AT ENTRY
+IF true
+DO
+System.out.println("BTM: main");
+ENDRULE
+
 RULE exit
 CLASS MyZkCli
 HELPER EQHelper

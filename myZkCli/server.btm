@@ -1,0 +1,19 @@
+RULE doIO
+CLASS NIOServerCnxn
+METHOD doIO
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("doIO");
+ENDRULE
+
+RULE invoke initiation, call static constructor of EQHelper
+CLASS QuorumPeerMain
+HELPER EQHelper
+METHOD main
+AT ENTRY
+IF true
+DO
+System.out.println("BTM: main()");
+ENDRULE

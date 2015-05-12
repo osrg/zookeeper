@@ -1,0 +1,11 @@
+{
+    "globalFlags" : { "direct": 1 },
+
+    "processes" : [
+    	    { "id": "zkcli1" },
+    	    { "id": "zkcli2" },
+    	    { "id": "zksrv1" },
+    	    { "id": "zksrv2" },
+    	    { "id": "zksrv3" }
+    ]
+}
