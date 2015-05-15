@@ -15,5 +15,4 @@ do
     fi
 
     EQ_MODE_DIRECT=1 EQ_ENV_PROCESS_ID=zksrv$i SERVER_JVMFLAGS="-javaagent:$AGENT_CP=script:server.btm" ZOO_LOG_DIR=logs/$i/ ../bin/zkServer.sh --config ../quorumconf/$i start
-    sleep 1
 done
