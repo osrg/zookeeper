@@ -1,0 +1,19 @@
+RULE processPacket
+CLASS ZooKeeperServer
+METHOD processPacket
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("processPacket");
+ENDRULE
+
+RULE invoke initiation, call static constructor of EQHelper
+CLASS QuorumPeerMain
+HELPER EQHelper
+METHOD main
+AT ENTRY
+IF true
+DO
+System.out.println("BTM: main()");
+ENDRULE
