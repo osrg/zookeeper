@@ -1,0 +1,129 @@
+RULE FinalRequestProcessor.processRequest
+CLASS FinalRequestProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("FinalRequestProcessor.processRequest");
+ENDRULE
+
+RULE PrepRequestProcessor.processRequest
+CLASS PrepRequestProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("PrepRequestProcessor.processRequest");
+ENDRULE
+
+RULE SyncRequestProcessor.processRequest
+CLASS SyncRequestProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("SyncRequestProcessor.processRequest");
+ENDRULE
+
+RULE AckRequestProcessor.processRequest
+CLASS AckRequestProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("AckRequestProcessor.processRequest");
+ENDRULE
+
+RULE CommitProcessor.processRequest
+CLASS CommitProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("CommitProcessor.processRequest");
+ENDRULE
+
+RULE FollowerRequestProcessor.processRequest
+CLASS FollowerRequestProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("FollowerRequestProcessor.processRequest");
+ENDRULE
+
+RULE LeaderRequestProcessor.processRequest
+CLASS LeaderRequestProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("LeaderRequestProcessor.processRequest");
+ENDRULE
+
+RULE ObserverRequestProcessor.processRequest
+CLASS ObserverRequestProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("ObserverRequestProcessor.processRequest");
+ENDRULE
+
+RULE ProposalRequestProcessor.processRequest
+CLASS ProposalRequestProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("ProposalRequestProcessor.processRequest");
+ENDRULE
+
+RULE ReadOnlyRequestProcessor.processRequest
+CLASS ReadOnlyRequestProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("ReadOnlyRequestProcessor.processRequest");
+ENDRULE
+
+RULE SendAckRequestProcessor.processRequest
+CLASS SendAckRequestProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("SendAckRequestProcessor.processRequest");
+ENDRULE
+
+RULE Leader.ToBeAppliedRequestProcessor.processRequest
+CLASS ToBeAppliedRequestProcessor
+METHOD processRequest
+HELPER EQHelper
+AT ENTRY
+IF true
+DO
+eventFuncCall("Leader.ToBeAppliedRequestProcessor.processRequest");
+ENDRULE
+
+RULE invoke initiation, call static constructor of EQHelper
+CLASS QuorumPeerMain
+HELPER EQHelper
+METHOD main
+AT ENTRY
+IF true
+DO
+System.out.println("BTM: main()");
+ENDRULE
