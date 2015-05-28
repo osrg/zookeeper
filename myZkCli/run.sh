@@ -2,9 +2,9 @@
 
 bash clean.sh
 
-EQPATH=$HOME/github/earthquake.git/earthquake/earthquake
+EQPATH=$HOME/github/earthquake.git/bin/earthquake-classic
 
-$EQPATH --launch-orchestrator --search-mode --search-policy dumb --execution-file-path=zkexe.json --search-mode-directory processpacket/ &
+$EQPATH orchestrator --search-mode --search-policy dumb --execution-file-path=zkexe.json --search-mode-directory processpacket/ &
 
 bash ./quorumStart.sh
 bash ./concurrentWrite.sh

@@ -3,7 +3,7 @@
 export ZOOBINDIR=../bin/
 . ../bin/zkEnv.sh
 
-AGENT_CP=/home/mitake/github/earthquake.git/inspector/java/base/target/earthquake-inspector.jar
+AGENT_CP=/home/mitake/github/earthquake.git/bin/earthquake-inspector-classic.jar
 
 for i in `seq 1 3`;
 do
