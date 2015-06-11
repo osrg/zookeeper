@@ -1,7 +1,7 @@
 RULE queuePacket
 CLASS ClientCnxn
 METHOD queuePacket
-HELPER EQHelper
+HELPER org.osrg.earthquake.PBEQHelper
 AT ENTRY
 IF true
 DO
@@ -11,7 +11,7 @@ ENDRULE
 
 RULE invoke initiation, call static constructor of EQHelper
 CLASS MyZkCli
-HELPER EQHelper
+HELPER org.osrg.earthquake.PBEQHelper
 METHOD main
 AT ENTRY
 IF true
@@ -21,7 +21,7 @@ ENDRULE
 
 RULE exit
 CLASS MyZkCli
-HELPER EQHelper
+HELPER org.osrg.earthquake.PBEQHelper
 METHOD main
 AT EXIT
 IF true
